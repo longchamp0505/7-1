@@ -1,0 +1,61 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 40px;
+    color: #333;
+}
+
+.detail-title {
+    margin-left: 20%;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* テーブル全体 */
+.detail-table {
+    width: 60%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border: 2px solid #000;
+}
+
+/* 行の色交互 */
+.detail-table tr:nth-child(odd) {
+    background-color: #dcdcdc;
+}
+
+.detail-table tr:nth-child(even) {
+    background-color: #fff;
+}
+
+/* セル（均等幅） */
+.detail-table th,
+.detail-table td {
+    border: 1px solid #fff;
+    padding: 10px;
+    text-align: left;
+    width: 50%;
+    box-sizing: border-box;
+    word-break: break-word;
+    font-weight: bold;
+}
+
+/* 項目名を太字に */
+.detail-table th {
+    font-weight: bold;
+}
+
+/* 戻るリンクのスタイル */
+.back-index {
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 20%;
+}
+
+.back-index a {
+    color: #007bff;
+    text-decoration: underline;
+    font-size: 16px;
+}
