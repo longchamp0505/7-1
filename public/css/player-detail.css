@@ -6,7 +6,7 @@ body {
 }
 
 .detail-title {
-    margin-left: 20%;
+    margin-left: 10%;
     margin-bottom: 30px;
     font-size: 24px;
     font-weight: bold;
@@ -14,7 +14,7 @@ body {
 
 /* テーブル全体 */
 .detail-table {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
     border-collapse: collapse;
     table-layout: fixed;
@@ -30,16 +30,25 @@ body {
     background-color: #fff;
 }
 
-/* セル（均等幅） */
+/* セル全体の共通設定 */
 .detail-table th,
 .detail-table td {
     border: 1px solid #fff;
     padding: 10px;
-    text-align: left;
-    width: 50%;
+    text-align: center;
     box-sizing: border-box;
     word-break: break-word;
     font-weight: bold;
+}
+
+/* 左側（見出し th）：幅30% */
+.detail-table th {
+    width: 30%;
+}
+
+/* 右側（データ td）：幅70% */
+.detail-table td {
+    width: 70%;
 }
 
 /* 項目名を太字に */
@@ -49,13 +58,21 @@ body {
 
 /* 戻るリンクのスタイル */
 .back-index {
-    text-align: left;
-    margin-top: 10px;
-    margin-left: 20%;
+    margin-top: 20px;
+    text-align: center; 
 }
 
 .back-index a {
-    color: #007bff;
-    text-decoration: underline;
-    font-size: 16px;
+    display: inline-block;
+    padding: 10px 200px;       /* 細長くする */
+    background-color: #000;  /* 黒背景 */
+    color: #fff;             /* 白文字 */
+    text-decoration: none;   /* 下線を消す */
+    border-radius: 5px;      /* 丸角に */
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.back-index a:hover {
+    background-color: #333;  /* ホバー時の色 */
 }

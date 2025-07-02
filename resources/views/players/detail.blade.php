@@ -17,6 +17,35 @@
     <tr><th>誕生日</th><td>{{ $player->birth }}</td></tr>
     <tr><th>身長</th><td>{{ $player->height }}</td></tr>
     <tr><th>体重</th><td>{{ $player->weight }}</td></tr>
+
+    {{-- 総得点 --}}
+    <tr>
+        <th>総得点</th>
+        <td>
+             @if ($player->goals->count() > 0)
+                <ul>
+                    {{ $player->goals->count() }} 点
+                </ul>
+            @else
+                無得点です。
+            @endif
+        </td>
+    </tr>
+
+    {{-- 得点履歴 --}}
+    <tr>
+        <th>得点履歴</th>
+        <td>
+            @foreach ($player->goals->sortBy('goal_time')->values() as $index => $goal)
+                <li>
+                    {{ $goal->pairing->kickoff }}開始 
+                    {{ $goal->pairing->enemyCountry->name }}戦
+                    {{ $goal->goal_time }}:
+                    {{ $index + 1 }}点目
+                </li>
+            @endforeach
+        </td>
+    </tr>
 </table>
 
 <div class="back-index">
