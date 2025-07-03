@@ -39,7 +39,7 @@
                 <td>{{ $player->weight }}</td>
                 {{-- 詳細ボタン --}}
                 <td>
-                    <a href="{{ route('players.show', $player->id) }}"
+                    <a href="{{ route('players.detail', $player->id) }}"
                     class="action-button detail-button">詳細</a>
                 </td>
 

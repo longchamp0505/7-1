@@ -9,7 +9,7 @@ class Goal extends Model
 {
     use HasFactory;
 
-        public function pairing()
+    public function pairing()
     {
         return $this->belongsTo(Pairing::class);
     }

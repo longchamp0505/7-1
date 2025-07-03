@@ -112,7 +112,7 @@
 
         <div class="button-area">
             <button id="player_edit_button" type="submit">編集</button>
-            <a id="player_back_button" href="{{ route('players.show', $player->id) }}">戻る</a>
+            <a id="player_back_button" href="{{ route('players.detail', $player->id) }}">戻る</a>
         </div>
     </form>
 </div>
