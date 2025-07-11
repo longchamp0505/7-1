@@ -1,0 +1,92 @@
+/* register.css */
+
+body {
+    font-family: sans-serif;
+    background-color: white;      /* 全体背景白 */
+    display: flex;
+    justify-content: center;      /* 横中央 */
+    align-items: center;          /* 縦中央 */
+    height: 100vh;
+    margin: 0;
+}
+
+.form-container {
+    width: 500px;
+    padding: 0;
+    background-color: transparent; /* 背景なし */
+    border-radius: 0;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+h1 {
+    margin-bottom: 25px;
+    font-size: 28px;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* 入力ボックスをID指定で統一 */
+#registration_login_id_input,
+#registration_password_input,
+#registration_re_password_input,
+#registration_country_select {
+    width: 100%;
+    padding: 8px 12px;       /* 高さ少し低く */
+    box-sizing: border-box;
+    font-size: 18px;
+    border-radius: 0;
+}
+
+/* ユーザー種別ラジオボタンもID指定でflex配置 */
+#registration_user_type_radio {
+    display: flex;
+    gap: 15px;
+}
+
+/* 登録ボタン */
+#registration_button {
+    width: 100%;
+    background-color: yellow;
+    color: black;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 0;
+    margin-top: 10px;
+}
+
+/* 戻るボタン */
+#registration_back_button {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    background-color: black;
+    color: white;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* バリデーションメッセージ */
+#registration_login_validation,
+#registration_password_validation,
+#registration_re_password_validation {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}

@@ -8,6 +8,13 @@
 
 <h1>■選手データ</h1>
 
+<div class="logout-container">
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="logout-button">ログアウト</button>
+    </form>
+</div>
+
 <table>
     <thead>
         <tr class="header-row">
@@ -21,8 +28,10 @@
             <th>身長</th>
             <th>体重</th>
             <th> </th>
-            <th> </th>
-            <th> </th>
+            @if (Auth::check() && Auth::user()->role == 0)
+                <th> </th>
+                <th> </th>
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -37,29 +46,32 @@
                 <td>{{ $player->birth }}</td>
                 <td>{{ $player->height }}</td>
                 <td>{{ $player->weight }}</td>
+                
                 {{-- 詳細ボタン --}}
                 <td>
                     <a href="{{ route('players.detail', $player->id) }}"
-                    class="action-button detail-button">詳細</a>
+                       class="action-button detail-button">詳細</a>
                 </td>
 
-                {{-- 編集ボタン --}}
-                <td>
-                    <a href="{{ route('players.edit', $player->id) }}"
-                    class="action-button edit-button">編集</a>
-                </td>
+                @if (Auth::check() && Auth::user()->role == 0)
+                    {{-- 編集ボタン --}}
+                    <td>
+                        <a href="{{ route('players.edit', $player->id) }}"
+                           class="action-button edit-button">編集</a>
+                    </td>
 
-                {{-- 削除ボタン --}}
-                <td>
-                    <form method="POST"
-                        action="{{ route('players.destroy', $player->id) }}"
-                        class="delete-form"
-                        onsubmit="return confirm('この選手データを削除しますか？');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="action-button delete-button">削除</button>
-                    </form>
-                </td>
+                    {{-- 削除ボタン --}}
+                    <td>
+                        <form method="POST"
+                              action="{{ route('players.destroy', $player->id) }}"
+                              class="delete-form"
+                              onsubmit="return confirm('この選手データを削除しますか？');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="action-button delete-button">削除</button>
+                        </form>
+                    </td>
+                @endif
             </tr>
         @endforeach
     </tbody>

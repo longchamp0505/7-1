@@ -135,3 +135,17 @@ a:hover {
 form.delete-form {
     display: inline;
 }
+
+.logout-container {
+    text-align: right;         /* 右端に寄せる */
+    max-width: 1000px;         /* テーブルの幅に合わせる */
+    margin: 0 auto 10px;       /* 中央寄せ & 下に余白 */
+}
+
+.logout-button {
+    padding: 8px 16px;
+    border: 1px solid #000;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+}

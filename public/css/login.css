@@ -1,0 +1,50 @@
+/* public/css/login.css */
+
+body {
+    display: flex;
+    justify-content: center;   /* 横中央配置 */
+    align-items: center;       /* 縦中央配置 */
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;              
+}
+
+h1 {
+    text-align: left;          /* 左端に合わせる */
+    margin-bottom: 25px;
+    font-size: 28px;           
+}
+
+label {
+    margin-bottom: 8px;
+    font-size: 16px;     
+}
+
+input[type="email"],
+input[type="password"],
+button {
+    width: 100%;
+    padding: 8px 12px;   
+    margin-bottom: 18px;
+    box-sizing: border-box;
+    font-size: 18px;
+    border-radius: 0;
+}
+
+button {
+    background-color: yellow;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+p {
+    text-align: center;
+    font-size: 15px;
+}
