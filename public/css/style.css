@@ -138,7 +138,6 @@ form.delete-form {
 
 .logout-container {
     text-align: right;         /* 右端に寄せる */
-    max-width: 1000px;         /* テーブルの幅に合わせる */
     margin: 0 auto 10px;       /* 中央寄せ & 下に余白 */
 }
 

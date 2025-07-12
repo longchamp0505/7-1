@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Player;
 use App\Models\Country;
 
@@ -13,11 +14,23 @@ class PlayerController extends Controller
         // 一覧画面から来たことを記録
         session(['from_list' => true]);
 
-        // del_flg が 0 のみ取得し、国情報も結合
-        $players = Player::with('country')->where('del_flg', 0)->paginate(20);
+        // ログインユーザーを取得
+        $user = Auth::user();
+
+        // players テーブル + country を結合
+        $query = Player::with('country')->where('del_flg', 0);
+
+        if ($user->role == 1) {
+            // 一般ユーザーの場合は、自分の所属国の選手のみ表示
+            $query->where('country_id', $user->country_id);
+        }
+        // 管理者の場合（role==0）は制限なし
+
+        $players = $query->paginate(20);
 
         return view('players.index', compact('players'));
     }
+
 
     public function show($id)
     {
@@ -43,6 +56,10 @@ class PlayerController extends Controller
 
     public function edit($id)
     {
+        if (Auth::user()->role != 0) {
+        abort(403, 'Unauthorized action.');
+        }
+        
         $player = Player::findOrFail($id);
 
         $countries = Country::all(); // 国プルダウン用
@@ -71,6 +88,6 @@ class PlayerController extends Controller
         $player = Player::findOrFail($id);
         $player->update($request->all());
 
-        return redirect()->route('players.detail', $id);
+        return redirect()->route('players.index');
     }
 }
