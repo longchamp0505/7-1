@@ -15,8 +15,6 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@example.com',      // 必須のメールアドレス
             'password' => Hash::make('admin'),// パスワードは必ずハッシュ化！
             'role' => 0,                         // 0=管理者、1=一般ユーザー
-            'created_at' => now(),
-            'updated_at' => now(),
         ]);
     }
 }
