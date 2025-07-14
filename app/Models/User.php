@@ -9,6 +9,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public $timestamps = false; // ここでタイムスタンプをOFFにする
+
     protected $fillable = [
         'country_id',
         'email',

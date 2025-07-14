@@ -73,30 +73,55 @@ class AuthController extends Controller
     // 新規登録処理
     public function register(Request $request)
     {
-        // バリデーション
-        $validated = $request->validate([
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed',
-            'country_id' => 'required|integer',
-        ], [
-            'email.required' => 'この項目は必須入力です。',
-            'email.email' => 'emailの形式で入力してください。',
-            'email.unique' => '入力されたメールアドレスはすでに登録されています。',
-            'password.required' => 'この項目は必須入力です。',
-            'password.min' => 'パスワードは8文字以上で入力してください。',
-            'password.confirmed' => 'パスワードが確認用と一致していません。',
-            'country_id.required' => 'この項目は必須入力です。',
-            'country_id.integer' => 'この項目は必須入力です。', // 数値でない場合も必須入力のメッセージを表示
-        ]);
+        // roleの値を先に取得
+        $role = $request->input('role');
+
+        if ($role == '0') { // 管理者
+            $validated = $request->validate([
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:8|confirmed',
+                'role' => 'required|in:0,1',
+            ], [
+                'email.required' => 'この項目は必須入力です。',
+                'email.email' => 'emailの形式で入力してください。',
+                'email.unique' => '入力されたメールアドレスはすでに登録されています。',
+                'password.required' => 'この項目は必須入力です。',
+                'password.min' => 'パスワードは8文字以上で入力してください。',
+                'password.confirmed' => 'パスワードが確認用と一致していません。',
+                'role.required' => 'この項目は必須入力です。',
+            ]);
+        } else { // 一般ユーザー
+            $validated = $request->validate([
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:8|confirmed',
+                'country_id' => 'required|integer',
+                'role' => 'required|in:0,1',
+            ], [
+                'email.required' => 'この項目は必須入力です。',
+                'email.email' => 'emailの形式で入力してください。',
+                'email.unique' => '入力されたメールアドレスはすでに登録されています。',
+                'password.required' => 'この項目は必須入力です。',
+                'password.min' => 'パスワードは8文字以上で入力してください。',
+                'password.confirmed' => 'パスワードが確認用と一致していません。',
+                'country_id.required' => 'この項目は必須入力です。',
+                'country_id.integer' => 'この項目は半角数字で入力してください。',
+                'role.required' => 'この項目は必須入力です。',
+            ]);
+        }
 
         $user = new User();
         $user->email = $validated['email'];
         $user->password = bcrypt($validated['password']);
-        $user->country_id = $validated['country_id'];
-        $user->role = 1; // 一般ユーザー
+        $user->role = $validated['role'];
+
+        // 一般ユーザーのときだけcountry_idをセット
+        if ($user->role == '1') {
+            $user->country_id = $validated['country_id'];
+        }
+
         $user->save();
 
         Auth::login($user);
-        return redirect('/'); // 登録後に遷移
+        return redirect('/login'); // 登録後に遷移
     }
 }
